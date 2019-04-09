@@ -1,3 +1,100 @@
+// generate api divs & buttons
+
+var queryURL = '';
+generateAPIs();
+
+function generateAPIs() {
+    // var apiObj = {}
+    var apiArr = [
+        {
+            name: 'icanhazdadjoke', // for switch case later
+            url: 'https://icanhazdadjoke.com/', // for ajax call
+            text: 'Click me for HAHAs'
+        },
+        {
+            name: 'test2',
+            url: '',
+            text: ''
+        },
+        {
+            name: 'test3',
+            url: '',
+            text: ''
+        },
+        {
+            name: 'test4',
+            url: '',
+            text: ''
+        },
+        {
+            name: 'test5',
+            url: '',
+            text: ''
+        }
+    ];
+
+    for (var i = 0; i < apiArr.length; i++) {
+        var apiDiv = $("<div>");
+        var btn = $("<button>");
+        btn.addClass("api-btn");
+        btn.attr("data-name", apiArr[i].name);
+        btn.attr("data-url", apiArr[i].url);
+        btn.text(apiArr[i].text);
+        apiDiv.append(btn);
+        $("#api-list").append(apiDiv);
+    };
+}
+
+
+$(document).on("click", ".api-btn", function () {
+    apiName =  $(this).attr("data-name");
+    queryURL = $(this).attr("data-url");
+    testAPI();
+});
+
+
+function testAPI() {
+    $.ajax({
+        url: queryURL,
+        method: "GET",
+        headers: {
+            Accept: "application/json"
+        }
+    }).then(function (response) {
+        console.log(response);
+
+        $("#api-result").empty();
+        switch (apiName) {
+            case 'icanhazdadjoke':
+                $("#api-result").text(response.joke);
+                break;
+        
+            case '':
+                // $("#api-result").text();
+                break;
+        
+            default:
+                break;
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyCOra4qCT4zjgT8Mk2fVi5hysWG9uWQSx4",
