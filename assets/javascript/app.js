@@ -12,9 +12,9 @@ function generateAPIs() {
             text: 'Click me for HAHAs'
         },
         {
-            name: 'test2',
-            url: '',
-            text: ''
+            name: 'giphy',
+            url: 'https://api.giphy.com/v1/gifs/random?api_key=2D9ZWdGSO6zZOnd7dqwMAxdeeDM0Bp1I', // /search?api_key=2D9ZWdGSO6zZOnd7dqwMAxdeeDM0Bp1I&limit=10' //&q=',
+            text: 'Give me a random GIF'
         },
         {
             name: 'test3',
@@ -52,6 +52,18 @@ $(document).on("click", ".api-btn", function () {
     testAPI();
 });
 
+$(document).on("click", ".giphy-img", function () {
+    var state = $(this).attr("data-state");
+
+    if (state === 'still') {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state","animate");
+    } else if (state === 'animate') {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state","still");
+    }
+});
+
 
 function testAPI() {
     $.ajax({
@@ -67,6 +79,17 @@ function testAPI() {
         switch (apiName) {
             case 'icanhazdadjoke':
                 $("#api-result").text(response.joke);
+                break;
+        
+            case 'giphy':
+				var results = response.data;
+				var giphyImg = $("<img>");
+				giphyImg.attr("src", results.images.fixed_height_still.url);
+				giphyImg.addClass("giphy-img");
+				giphyImg.attr("data-state","still");
+				giphyImg.attr("data-still",results.images.fixed_height_still.url);
+				giphyImg.attr("data-animate",results.images.fixed_height.url);
+				$("#api-result").append(giphyImg);
                 break;
         
             case '':
