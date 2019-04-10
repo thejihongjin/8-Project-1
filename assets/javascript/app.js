@@ -16,6 +16,16 @@ function generateAPIs() {
             url: 'https://api.giphy.com/v1/gifs/random?api_key=2D9ZWdGSO6zZOnd7dqwMAxdeeDM0Bp1I', // /search?api_key=2D9ZWdGSO6zZOnd7dqwMAxdeeDM0Bp1I&limit=10' //&q=',
             text: 'Give me a random GIF'
         },
+       {
+           name: 'jokes',
+           url: 'https://official-joke-api.appspot.com/random_joke',
+           text: 'Click for Jokes'
+       },
+       {
+           name: 'bored',
+           url: 'http://www.boredapi.com/api/activity/',
+           text: 'Bored? Click Here'
+       },
         {
             name: 'test3',
             url: '',
@@ -91,6 +101,14 @@ function testAPI() {
 				giphyImg.attr("data-animate",results.images.fixed_height.url);
 				$("#api-result").append(giphyImg);
                 break;
+
+			case 'jokes':
+               $("#api-result").text(response.setup + " " + response.punchline);
+               break;
+
+           case 'bored':
+               $("#api-result").text(response.activity + ".")
+               break;
         
             case '':
                 // $("#api-result").text();
