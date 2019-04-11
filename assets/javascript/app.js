@@ -26,6 +26,21 @@ function generateAPIs() {
            url: 'http://www.boredapi.com/api/activity/',
            text: 'Bored? Click Here'
        },
+       {
+           name: 'chucknorris',
+           url: 'http://api.icndb.com/jokes/random',
+           text: 'Chuck Norris Facts'
+       },
+       {
+           name: 'randomcats',
+           url: 'https://api.thecatapi.com/v1/images/search',
+           text: 'Kitties To Brighten Your Day'
+       },
+       {
+           name: 'memegenerator',
+           url: 'https://api.imgur.com/3/image',
+           text: 'Memerator'
+       },
         {
             name: 'test3',
             url: '',
@@ -109,7 +124,18 @@ function testAPI() {
            case 'bored':
                $("#api-result").text(response.activity + ".")
                break;
-        
+
+            case 'chucknorris':
+               $("#api-result").html(`<p>` + response.value.joke + `</p>`)
+               break;
+
+           case 'randomcats':
+               $("#api-result").html(`<img src=` + response[0].url + `>`)
+               break;
+       
+               // case 'memegenerator':
+               // $("#api-result").html(`<img src=` + response[0].url + `>`)
+               // break;
             case '':
                 // $("#api-result").text();
                 break;
