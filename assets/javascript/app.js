@@ -72,9 +72,24 @@ function generateAPIs() {
            text: 'Memerator'
        },
         {
-            name: '',
-            url: '',
-            text: ''
+            name: 'geek',
+            url: 'https://geek-jokes.sameerkumar.website/api', // has a lot of chuck norris jokes though...
+            text: 'Geek out'
+        },
+        {
+            name: 'kanye',
+            url: 'https://api.kanye.rest',
+            text: 'Kanye'
+        },
+        {
+            name: 'minon',
+            url: 'https://api.funtranslations.com/translate/minion.json?text=' + 'hi', // requires input box
+            text: 'BANANAS!'
+        },
+        {
+            name: 'fortunecookie',
+            url: 'https://bad-fortune-cookie.herokuapp.com/fortunes/',
+            text: 'What is your destiny?'
         }
     ];
 
