@@ -47,6 +47,16 @@ function generateAPIs() {
             text: 'Hit me with that wisdom!'
         },
         {
+            name: 'geek',
+            url: 'https://geek-jokes.sameerkumar.website/api', // has a lot of chuck norris jokes though...
+            text: 'Geek out'
+        },
+        {
+            name: 'kanye',
+            url: 'https://api.kanye.rest',
+            text: 'Kanye'
+        },
+        {
             name: '',
             url: '',
             text: ''
@@ -134,6 +144,10 @@ function testAPI() {
 
             case 'ronswanson':
                 $("#api-result").text(response[0]);
+                break;
+
+            case 'kanye':
+                $("#api-result").text(response.quote);
                 break;
 
             case '':
