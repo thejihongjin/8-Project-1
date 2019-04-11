@@ -41,40 +41,40 @@ function generateAPIs() {
            url: 'https://api.thecatapi.com/v1/images/search',
            text: 'Kitties To Brighten Your Day'
        },
-       {
-           name: 'memegenerator',
-           url: 'https://www.reddit.com/r/memes.json?sort=top',
-           text: 'Memerator'
-       },
-        {
-            name: 'jokes',
-            url: 'https://official-joke-api.appspot.com/random_joke',
-            text: 'Click for Jokes'
-        },
-        {
-            name: 'bored',
-            url: 'https://www.boredapi.com/api/activity/',
-            text: 'Bored? Click Here'
-        },
-        {
-            name: 'chucknorris',
-            url: 'https://api.icndb.com/jokes/random',
-            text: 'Chuck Norris Facts'
-        },
-        {
-            name: 'chucknorrisio',
-            url: 'https://api.chucknorris.io/jokes/random',
-            text: 'Chuck Norris Facts 2'
-        },
         {
             name: 'ronswanson',
             url: 'http://ron-swanson-quotes.herokuapp.com/v2/quotes',
             text: 'Hit me with that wisdom!'
         },
+       {
+            name: 'geek',
+            url: 'https://geek-jokes.sameerkumar.website/api', // has a lot of chuck norris jokes though...
+            text: 'Geek out'
+        },
         {
+            name: 'kanye',
+            url: 'https://api.kanye.rest',
+            text: 'Kanye'
+        },
+      {
             name: 'dogimg',
             url: 'https://dog.ceo/api/breeds/image/random',
             text: 'Puppy Love'
+        },
+        {
+            name: 'randomcats',
+            url: 'https://api.thecatapi.com/v1/images/search',
+            text: 'Kitties To Brighten Your Day'
+        },
+      {
+           name: 'memegenerator',
+           url: 'https://www.reddit.com/r/memes.json?sort=top',
+           text: 'Memerator'
+       },
+        {
+            name: '',
+            url: '',
+            text: ''
         }
     ];
 
@@ -163,6 +163,18 @@ function testAPI() {
 
             case 'dogimg':
                 $("#api-result").html('<img src=' + response.message + '>')
+                break;
+            
+            case 'ronswanson':
+                $("#api-result").text(response[0]);
+                break;
+
+            case 'kanye':
+                $("#api-result").text(response.quote);
+                break;
+
+            case '':
+                // $("#api-result").text();
                 break;
 
             default:
