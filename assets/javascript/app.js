@@ -32,13 +32,18 @@ function generateAPIs() {
            text: 'Chuck Norris Facts'
        },
        {
+        name: 'chucknorrisio',
+        url: 'https://api.chucknorris.io/jokes/random',
+        text: 'Chuck Norris Facts 2'
+       },
+       {
            name: 'randomcats',
            url: 'https://api.thecatapi.com/v1/images/search',
            text: 'Kitties To Brighten Your Day'
        },
        {
            name: 'memegenerator',
-           url: 'https://api.imgur.com/3/image',
+           url: 'https://www.reddit.com/r/memes.json?sort=top',
            text: 'Memerator'
        },
         {
@@ -129,13 +134,17 @@ function testAPI() {
                $("#api-result").html(`<p>` + response.value.joke + `</p>`)
                break;
 
+            case 'chucknorrisio':
+               $("#api-result").html(`<p>` + response.value + `</p>`)
+               break;
+
            case 'randomcats':
                $("#api-result").html(`<img src=` + response[0].url + `>`)
                break;
        
-               // case 'memegenerator':
-               // $("#api-result").html(`<img src=` + response[0].url + `>`)
-               // break;
+            // case 'memegenerator':
+            //    $("#api-result").html(`<img alt= 'meme img' src=` + response[0].data.link + `>`)
+            //    break;
             case '':
                 // $("#api-result").text();
                 break;
