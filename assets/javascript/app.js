@@ -7,79 +7,59 @@ function generateAPIs() {
     // var apiObj = {}
     var apiArr = [
         {
-            name: 'icanhazdadjoke', // for switch case later
-            url: 'https://icanhazdadjoke.com/', // for ajax call
-            text: 'Click me for HAHAs'
+            name: 'bored',
+            url: 'http://www.boredapi.com/api/activity/',
+            text: 'Bored? Click Here'
+        },
+        {
+            name: 'chucknorris',
+            url: 'http://api.icndb.com/jokes/random',
+            text: 'Chuck Norris Facts'
+        },
+        {
+            name: 'chucknorrisio',
+            url: 'https://api.chucknorris.io/jokes/random',
+            text: 'Chuck Norris Facts 2'
+        },
+        {
+            name: 'dogimg',
+            url: 'https://dog.ceo/api/breeds/image/random',
+            text: 'Puppy Love'
+        },
+        {
+            name: 'fortunecookie',
+            url: 'https://bad-fortune-cookie.herokuapp.com/fortunes/',
+            text: 'What is your destiny?'
+        },
+        {
+            name: 'geek',
+            url: 'https://geek-jokes.sameerkumar.website/api', // has a lot of chuck norris jokes though...
+            text: 'Geek out'
         },
         {
             name: 'giphy',
             url: 'https://api.giphy.com/v1/gifs/random?api_key=2D9ZWdGSO6zZOnd7dqwMAxdeeDM0Bp1I', // /search?api_key=2D9ZWdGSO6zZOnd7dqwMAxdeeDM0Bp1I&limit=10' //&q=',
             text: 'Give me a random GIF'
         },
-       {
-           name: 'jokes',
-           url: 'https://official-joke-api.appspot.com/random_joke',
-           text: 'Click for Jokes'
-       },
-       {
-           name: 'bored',
-           url: 'http://www.boredapi.com/api/activity/',
-           text: 'Bored? Click Here'
-       },
-       {
-           name: 'chucknorris',
-           url: 'http://api.icndb.com/jokes/random',
-           text: 'Chuck Norris Facts'
-       },
-       {
-        name: 'chucknorrisio',
-        url: 'https://api.chucknorris.io/jokes/random',
-        text: 'Chuck Norris Facts 2'
-       },
-       {
-           name: 'randomcats',
-           url: 'https://api.thecatapi.com/v1/images/search',
-           text: 'Kitties To Brighten Your Day'
-       },
         {
-            name: 'ronswanson',
-            url: 'http://ron-swanson-quotes.herokuapp.com/v2/quotes',
-            text: 'Hit me with that wisdom!'
+            name: 'icanhazdadjoke', // for switch case later
+            url: 'https://icanhazdadjoke.com/', // for ajax call
+            text: 'Click me for HAHAs'
         },
-       {
-            name: 'geek',
-            url: 'https://geek-jokes.sameerkumar.website/api', // has a lot of chuck norris jokes though...
-            text: 'Geek out'
+        {
+            name: 'jokes',
+            url: 'https://official-joke-api.appspot.com/random_joke',
+            text: 'Click for Jokes'
         },
         {
             name: 'kanye',
             url: 'https://api.kanye.rest',
             text: 'Kanye'
         },
-      {
-            name: 'dogimg',
-            url: 'https://dog.ceo/api/breeds/image/random',
-            text: 'Puppy Love'
-        },
         {
-            name: 'randomcats',
-            url: 'https://api.thecatapi.com/v1/images/search',
-            text: 'Kitties To Brighten Your Day'
-        },
-      {
-           name: 'memegenerator',
-           url: 'https://www.reddit.com/r/memes.json?sort=top',
-           text: 'Memerator'
-       },
-        {
-            name: 'geek',
-            url: 'https://geek-jokes.sameerkumar.website/api', // has a lot of chuck norris jokes though...
-            text: 'Geek out'
-        },
-        {
-            name: 'kanye',
-            url: 'https://api.kanye.rest',
-            text: 'Kanye'
+            name: 'memegenerator',
+            url: 'https://www.reddit.com/r/memes.json?sort=top', //not quite working yet
+            text: 'Memerator'
         },
         {
             name: 'minon',
@@ -87,9 +67,14 @@ function generateAPIs() {
             text: 'BANANAS!'
         },
         {
-            name: 'fortunecookie',
-            url: 'https://bad-fortune-cookie.herokuapp.com/fortunes/',
-            text: 'What is your destiny?'
+            name: 'randomcats',
+            url: 'https://api.thecatapi.com/v1/images/search',
+            text: 'Kitties To Brighten Your Day'
+        },
+        {
+            name: 'ronswanson',
+            url: 'http://ron-swanson-quotes.herokuapp.com/v2/quotes',
+            text: 'Hit me with that wisdom!'
         }
     ];
 
@@ -137,8 +122,28 @@ function testAPI() {
 
         $("#api-result").empty();
         switch (apiName) {
-            case 'icanhazdadjoke':
-                $("#api-result").text(response.joke);
+            case 'bored':
+                $("#api-result").text(response.activity + ".")
+                break;
+
+            case 'chucknorris':
+                $("#api-result").html('<p>' + response.value.joke + '</p>')
+                break;
+
+            case 'chucknorrisio':
+                $("#api-result").html('<p>' + response.value + '</p>')
+                break;
+
+            case 'dogimg':
+                $("#api-result").html('<img src=' + response.message + '>')
+                break;
+
+            case 'fortunecookie':
+                // $("#api-result").text();
+                break;
+
+            case 'geek':
+                // $("#api-result").text();
                 break;
 
             case 'giphy':
@@ -152,20 +157,24 @@ function testAPI() {
                 $("#api-result").append(giphyImg);
                 break;
 
+            case 'icanhazdadjoke':
+                $("#api-result").text(response.joke);
+                break;
+
             case 'jokes':
                 $("#api-result").text(response.setup + " " + response.punchline);
                 break;
 
-            case 'bored':
-                $("#api-result").text(response.activity + ".")
+            case 'kanye':
+                $("#api-result").text(response.quote);
                 break;
 
-            case 'chucknorris':
-                $("#api-result").html('<p>' + response.value.joke + '</p>')
+            case 'memegenerator':
+                // $("#api-result").text();
                 break;
 
-            case 'chucknorrisio':
-                $("#api-result").html('<p>' + response.value + '</p>')
+            case 'minion':
+                // $("#api-result").text();
                 break;
 
             case 'randomcats':
@@ -174,18 +183,6 @@ function testAPI() {
 
             case 'ronswanson':
                 $("#api-result").text(response[0]);
-                break;
-
-            case 'dogimg':
-                $("#api-result").html('<img src=' + response.message + '>')
-                break;
-            
-            case 'ronswanson':
-                $("#api-result").text(response[0]);
-                break;
-
-            case 'kanye':
-                $("#api-result").text(response.quote);
                 break;
 
             case '':
@@ -197,10 +194,6 @@ function testAPI() {
         }
     });
 }
-
-
-
-
 
 
 
