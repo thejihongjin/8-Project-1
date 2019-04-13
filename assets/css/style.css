@@ -33,6 +33,13 @@ img {
     border-radius: 5%;
 }
 
+.meme-img {
+    max-width: 890px;
+    max-height: auto;
+    margin: 0 auto;
+    border-radius: 0%;
+ }
+
 p {
     color: white;
     margin: 20px auto;
