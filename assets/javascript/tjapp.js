@@ -1,11 +1,15 @@
 // generate api divs & buttons
-
 var queryURL = '';
 generateAPIs();
 
 function generateAPIs() {
     // var apiObj = {}
     var apiArr = [
+        {
+            name: 'miniontranslate',
+            url: 'https://api.funtranslations.com/translate/minion.json?text=',
+            text: 'BANANAS!'
+        },
         {
             name: 'bored',
             url: 'http://www.boredapi.com/api/activity/',
@@ -62,11 +66,6 @@ function generateAPIs() {
             text: 'Memerator'
         },
         {
-            name: 'minon',
-            url: 'https://api.funtranslations.com/translate/minion.json?text=' + 'hi', // requires input box
-            text: 'BANANAS!'
-        },
-        {
             name: 'randomcats',
             url: 'https://api.thecatapi.com/v1/images/search',
             text: 'Kitties To Brighten Your Day'
@@ -75,13 +74,18 @@ function generateAPIs() {
             name: 'ronswanson',
             url: 'http://ron-swanson-quotes.herokuapp.com/v2/quotes',
             text: 'Hit me with that wisdom!'
+        },
+        {
+            name: 'yodatranslate',
+            url: 'https://api.funtranslations.com/translate/yoda.json?text=', // requires input box
+            text: 'Yoda, You Are!'
         }
     ];
 
     for (var i = 0; i < apiArr.length; i++) {
         var apiDiv = $("<div>");
         var btn = $("<button>");
-        btn.addClass("api-btn");
+        btn.addClass("api-btn btn btn-dark");
         btn.attr("data-name", apiArr[i].name);
         btn.attr("data-url", apiArr[i].url);
         btn.text(apiArr[i].text);
@@ -92,9 +96,14 @@ function generateAPIs() {
 
 
 $(document).on("click", ".api-btn", function () {
+
     apiName = $(this).attr("data-name");
     queryURL = $(this).attr("data-url");
-    testAPI();
+    if (apiName === 'miniontranslate' || apiName === 'yodatranslate') {
+        inputField()
+    } else {
+        testAPI();  
+    }
 });
 
 $(document).on("click", ".giphy-img", function () {
@@ -109,6 +118,21 @@ $(document).on("click", ".giphy-img", function () {
     }
 });
 
+function inputField() {
+
+    console.log(apiName)
+    $('#exampleModal').modal('show')    //wont pop up after first time
+    
+    $(document).on('click', '#input-submit', function(){
+        userInput = $('#message-text').val().trim()
+        $("#api-result").empty()
+        $.getJSON(queryURL + userInput, function(data) {
+            console.log(data)   
+            $('#api-result').append('<p>' + data.contents.translated + '</p>')          
+        })
+        $('#exampleModal').modal('hide')
+    })
+}
 
 function testAPI() {
     $.ajax({
@@ -123,7 +147,7 @@ function testAPI() {
         $("#api-result").empty();
         switch (apiName) {
             case 'bored':
-                $("#api-result").text(response.activity + ".")
+                $("#api-result").html('<p>' + response.activity + "." + '</p>')
                 break;
 
             case 'chucknorris':
@@ -158,35 +182,35 @@ function testAPI() {
                 break;
 
             case 'icanhazdadjoke':
-                $("#api-result").text(response.joke);
+                $("#api-result").html('<p>' + response.joke + '</p>');
                 break;
 
             case 'jokes':
-                $("#api-result").text(response.setup + " " + response.punchline);
+                $("#api-result").html('<p>' + response.setup + " " + response.punchline + '</p>');
                 break;
 
             case 'kanye':
-                $("#api-result").text(response.quote);
+                $("#api-result").html('<p>' + response.quote + '</p>');
                 break;
 
             case 'memegenerator':
                 // $("#api-result").text();
                 break;
 
-            case 'minion':
-                // $("#api-result").text();
-                break;
-
             case 'randomcats':
-                $("#api-result").html('<img src=' + response[0].url + '>')
+                $("#api-result").html('<img src=' + response[0].url + '</p>')
                 break;
 
             case 'ronswanson':
-                $("#api-result").text(response[0]);
+                $("#api-result").html('<p>' + response[0] + '</p>');
+                break;
+
+            case 'opinions':
+               $("#api-result").html(`<input>`);
                 break;
 
             case '':
-                // $("#api-result").text();
+                $("#api-result").text();
                 break;
 
             default:
@@ -194,18 +218,6 @@ function testAPI() {
         }
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Initialize Firebase
 var config = {
