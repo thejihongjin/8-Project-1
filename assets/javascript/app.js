@@ -1,92 +1,131 @@
-// generate api divs & buttons
+
 
 var queryURL = '';
 generateAPIs();
 
-function generateAPIs() {
-    // var apiObj = {}
+function generateAPIs() { // generate api divs & buttons
     var apiArr = [
         {
             name: 'bored',
             url: 'http://www.boredapi.com/api/activity/',
-            text: 'Bored? Click Here'
+            text: 'Bored? Click Here',
+            input: 'n'
         },
         {
             name: 'chucknorris',
             url: 'http://api.icndb.com/jokes/random',
-            text: 'Chuck Norris Facts'
+            text: 'Chuck Norris Facts',
+            input: 'n'
         },
         {
             name: 'chucknorrisio',
             url: 'https://api.chucknorris.io/jokes/random',
-            text: 'Chuck Norris Facts 2'
+            text: 'Chuck Norris Facts 2',
+            input: 'n'
         },
         {
             name: 'dogimg',
             url: 'https://dog.ceo/api/breeds/image/random',
-            text: 'Puppy Love'
+            text: 'Puppy Love',
+            input: 'n'
         },
         {
             name: 'fortunecookie',
             url: 'https://bad-fortune-cookie.herokuapp.com/fortunes/',
-            text: 'What is your destiny?'
+            text: 'What is your destiny?',
+            input: 'n'
         },
         {
             name: 'geek',
             url: 'https://geek-jokes.sameerkumar.website/api', // has a lot of chuck norris jokes though...
-            text: 'Geek out'
+            text: 'Geek out',
+            input: 'n'
         },
         {
             name: 'giphy',
             url: 'https://api.giphy.com/v1/gifs/random?api_key=2D9ZWdGSO6zZOnd7dqwMAxdeeDM0Bp1I', // /search?api_key=2D9ZWdGSO6zZOnd7dqwMAxdeeDM0Bp1I&limit=10' //&q=',
-            text: 'Give me a random GIF'
+            text: 'Give me a random GIF',
+            input: 'y'
         },
         {
-            name: 'icanhazdadjoke', // for switch case later
-            url: 'https://icanhazdadjoke.com/', // for ajax call
-            text: 'Click me for HAHAs'
+            name: 'icanhazdadjoke',
+            url: 'https://icanhazdadjoke.com/',
+            text: 'Click me for HAHAs',
+            input: 'n'
         },
         {
             name: 'jokes',
             url: 'https://official-joke-api.appspot.com/random_joke',
-            text: 'Click for Jokes'
+            text: 'Click for Jokes',
+            input: 'n'
         },
         {
             name: 'kanye',
             url: 'https://api.kanye.rest',
-            text: 'Kanye'
+            text: 'Kanye',
+            input: 'n'
         },
         {
             name: 'memegenerator',
             url: 'https://www.reddit.com/r/memes.json?sort=top', //not quite working yet
-            text: 'Memerator'
-        },
-        {
-            name: 'minon',
-            url: 'https://api.funtranslations.com/translate/minion.json?text=' + 'hi', // requires input box
-            text: 'BANANAS!'
+            text: 'Memerator',
+            input: 'n'
         },
         {
             name: 'randomcats',
             url: 'https://api.thecatapi.com/v1/images/search',
-            text: 'Kitties To Brighten Your Day'
+            text: 'Kitties To Brighten Your Day',
+            input: 'n'
         },
         {
             name: 'ronswanson',
             url: 'http://ron-swanson-quotes.herokuapp.com/v2/quotes',
-            text: 'Hit me with that wisdom!'
+            text: 'Hit me with that wisdom!',
+            input: 'n'
+        },
+        {
+            name: 'translateminion',
+            url: 'https://api.funtranslations.com/translate/minion.json?text=',
+            text: 'BANANAS!',
+            input: 'n' // using modal
+        },
+        {
+            name: 'translateyoda',
+            url: 'https://api.funtranslations.com/translate/yoda.json?text=',
+            text: 'Yoda, You Are!',
+            input: 'n' // using modal
         }
     ];
 
     for (var i = 0; i < apiArr.length; i++) {
         var apiDiv = $("<div>");
-        var btn = $("<button>");
-        btn.addClass("api-btn");
-        btn.attr("data-name", apiArr[i].name);
-        btn.attr("data-url", apiArr[i].url);
-        btn.text(apiArr[i].text);
-        apiDiv.append(btn);
-        $("#api-list").append(apiDiv);
+        if (apiArr[i].input === 'y') {
+            var form = $("<form>");
+            form.addClass("api-form");
+            form.attr("id", apiArr[i].name + "-form");
+            var input = $("<input>");
+            input.attr("type", "text");
+            input.attr("id", apiArr[i].name + "-input");
+            form.append(input);
+
+            var submit = $("<button>");
+            submit.addClass("api-btn"); //change to submit onclick?
+            submit.attr("data-name", apiArr[i].name);
+            submit.attr("data-url", apiArr[i].url);
+            submit.text(apiArr[i].text);
+            form.append(submit);
+
+            apiDiv.append(form);
+            $("#api-list").append(apiDiv);
+        } else {
+            var btn = $("<button>");
+            btn.addClass("btn btn-dark api-btn");
+            btn.attr("data-name", apiArr[i].name);
+            btn.attr("data-url", apiArr[i].url);
+            btn.text(apiArr[i].text);
+            apiDiv.append(btn);
+            $("#api-list").append(apiDiv);
+        }
     };
 }
 
@@ -94,21 +133,40 @@ function generateAPIs() {
 $(document).on("click", ".api-btn", function () {
     apiName = $(this).attr("data-name");
     queryURL = $(this).attr("data-url");
-    testAPI();
+
+    if (apiName === 'translateminion' || apiName === 'translateyoda') {
+        inputField();
+    } else {
+        testAPI();  
+    }
 });
 
 $(document).on("click", ".giphy-img", function () {
     var state = $(this).attr("data-state");
 
-    if (state === 'still') {
-        $(this).attr("src", $(this).attr("data-animate"));
-        $(this).attr("data-state", "animate");
-    } else if (state === 'animate') {
+    if (state === 'animate') {
         $(this).attr("src", $(this).attr("data-still"));
         $(this).attr("data-state", "still");
+    } else if (state === 'still') {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
     }
 });
 
+function inputField() {
+    console.log(apiName)
+    $('#exampleModal').modal('show');
+    
+    $(document).on('click', '#input-submit', function(){
+        userInput = $('#message-text').val().trim()
+        $("#api-result").empty();
+        $.getJSON(queryURL + userInput, function(data) {
+            console.log(data)   
+            $('#api-result').html('<p>' + data.contents.translated + '</p>');       
+        })
+        $('#exampleModal').modal('hide')
+    })
+}
 
 function testAPI() {
     $.ajax({
@@ -149,9 +207,9 @@ function testAPI() {
             case 'giphy':
                 var results = response.data;
                 var giphyImg = $("<img>");
-                giphyImg.attr("src", results.images.fixed_height_still.url);
+                giphyImg.attr("src", results.images.fixed_height.url);
                 giphyImg.addClass("giphy-img");
-                giphyImg.attr("data-state", "still");
+                giphyImg.attr("data-state", "animate");
                 giphyImg.attr("data-still", results.images.fixed_height_still.url);
                 giphyImg.attr("data-animate", results.images.fixed_height.url);
                 $("#api-result").append(giphyImg);
@@ -173,16 +231,18 @@ function testAPI() {
                 // $("#api-result").text();
                 break;
 
-            case 'minion':
-                // $("#api-result").text();
-                break;
-
             case 'randomcats':
                 $("#api-result").html('<img src=' + response[0].url + '>')
                 break;
 
             case 'ronswanson':
                 $("#api-result").text(response[0]);
+                break;
+
+            case 'translateminion': //done in inputField function
+                break;
+
+            case 'translateyoda': //done in inputField function
                 break;
 
             case '':
