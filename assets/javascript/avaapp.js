@@ -129,11 +129,6 @@ $(document).on("click", ".icon-btn", function () {
     $(".instruct-title").hide();
     $(".instruct-body").css("display", "block");
     $(".icon-btn").hide();
-
-    // $("form").css("display", "block");
-    // $("#time-rem").css("display", "block");
-    // $("#triviaquiz").show();
-    // $("#startbutton").hide();
 });
 
 $(document).on("click", ".api-btn", function () {
