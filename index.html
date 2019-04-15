@@ -8,11 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- jQuery -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Bootstrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/avastyle.css">
 
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script> <!-- Firebase Reference -->
 </head>
@@ -27,11 +28,29 @@
 
         <div class="row">
             <div id="api-list" class="col-lg-4">
-                API LIST
+                
             </div>
             <div class="col-lg-8">
                 <div id="api-result" class="row">
-                    FILLABLE DIV
+                    <div><button class="icon-btn"><i class="small material-icons">whatshot</i></button>
+                        <span class="instruct-title">Click Flame for Instructions</span>
+                        <ul class="instruct-body">
+                            <li><i class="small material-icons">chevron_left</i>Click on the buttons on the left to suit your fancy!</li><br>
+                            <li>"Bored? Click Here" will give you activity suggestions.</li>
+                            <li>"Chuck Norris Facts" will surprise and amaze you.</li>
+                            <li>"Puppy Love" will bring you doggy delights.</li>
+                            <li>Click on "What is Your Destiny" for some fortunes.</li>
+                            <li>"Geek Out" for random geeky statements.</li>
+                            <li>Enter your idea for Gifs in the blank text field, or choose randomly.</li>
+                            <li>"Click Me for HAHAs" and "Click for Jokes" are pretty obvious...</li>
+                            <li>"Kanye Says" will bring you life advice from Kanye.</li>
+                            <li>Click on "Meme Me Up, Scotty" for entertaining memes.</li>
+                            <li>"Kitties To Brighten Your Day"...enough said. </li>
+                            <li>"Hit Me With That Wisdom" generates quotes from Ron Swanson.</li>
+                            <li>"BANANAS!" translates your words into adorable Minion-Speak.</li>
+                            <li>"Yoda, You Are!" translats your words as the ultimate jedi-master.</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="row">
                     <p><span id="watchers"></span> people are online!!!</p>
@@ -71,7 +90,7 @@
     <script type="text/javascript">
 
     </script>
-    <script src="./assets/javascript/app.js"></script>
+    <script src="./assets/javascript/avaapp.js"></script>
     <!-- <script src="./assets/javascript/jjapp.js"></script> -->
 </body>
 </html>
@@ -131,4 +150,4 @@ Metrics
         Libraries/Technologies
             Babel - used to compile ES6 to work on older browsers
             ESLint - catch syntax errors and style issues (not for UI)
- -->
+-->
