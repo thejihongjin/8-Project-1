@@ -1,5 +1,3 @@
-
-
 var queryURL = '';
 var userInput = '';
 generateAPIs();
@@ -32,7 +30,7 @@ function generateAPIs() { // generate api divs & buttons
         },
         {
             name: 'geek',
-            url: 'https://geek-jokes.sameerkumar.website/api', // has a lot of chuck norris jokes though...
+            url: 'https://geek-jokes.sameerkumar.website/api',
             text: 'Geek out',
             input: 'n'
         },
@@ -94,6 +92,7 @@ function generateAPIs() { // generate api divs & buttons
 
     for (var i = 0; i < apiArr.length; i++) {
         var apiDiv = $("<div>");
+        apiDiv.addClass("api-div")
         if (apiArr[i].input === 'y') {
             var form = $("<form>");
             form.addClass("api-form");
@@ -101,10 +100,11 @@ function generateAPIs() { // generate api divs & buttons
             var input = $("<input>");
             input.attr("type", "text");
             input.attr("id", apiArr[i].name + "-input");
+            input.attr("placeholder", "cats are awesome")
             form.append(input);
 
             var submit = $("<button>");
-            submit.addClass("api-btn");
+            submit.addClass("api-btn btn-info");
             submit.attr("data-name", apiArr[i].name);
             submit.attr("data-url", apiArr[i].url);
             submit.text(apiArr[i].text);
@@ -114,7 +114,7 @@ function generateAPIs() { // generate api divs & buttons
             $("#api-list").append(apiDiv);
         } else {
             var btn = $("<button>");
-            btn.addClass("btn btn-dark api-btn");
+            btn.addClass("btn btn-dark api-btn z-depth-0");
             btn.attr("data-name", apiArr[i].name);
             btn.attr("data-url", apiArr[i].url);
             btn.text(apiArr[i].text);
@@ -123,6 +123,13 @@ function generateAPIs() { // generate api divs & buttons
         }
     };
 }
+
+$(document).on("click", ".icon-btn", function () {
+    event.preventDefault();
+    $(".instruct-title").hide();
+    $(".instruct-body").css("display", "block");
+    $(".icon-btn").hide();
+});
 
 $(document).on("click", ".api-btn", function () {
     event.preventDefault();
