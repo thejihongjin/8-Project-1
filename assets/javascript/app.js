@@ -9,14 +9,14 @@ function generateAPIs() { // generate api divs & buttons
     var apiArr = [
         {
             name: 'bored',
-            url: 's//www.boredapi.com/api/activity/',
+            url: 'https://www.boredapi.com/api/activity/',
             text: 'Bored? Click Here',
             input: 'n',
             title: "Get a random activity suggestion"
         },
         {
             name: 'chucknorris',
-            url: 's//api.icndb.com/jokes/random',
+            url: 'https://api.icndb.com/jokes/random',
             text: 'Chuck Norris Facts',
             input: 'n',
             title: 'Learn about Chuck Norris!'
