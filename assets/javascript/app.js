@@ -1,4 +1,4 @@
-
+$(document).ready(fartscroll());
 
 var queryURL = '';
 var userInput = '';
@@ -10,61 +10,71 @@ function generateAPIs() { // generate api divs & buttons
             name: 'bored',
             url: 'http://www.boredapi.com/api/activity/',
             text: 'Bored? Click Here',
-            input: 'n'
+            input: 'n',
+            title: "Get a random activity suggestion"
         },
         {
             name: 'chucknorris',
             url: 'http://api.icndb.com/jokes/random',
             text: 'Chuck Norris Facts',
-            input: 'n'
+            input: 'n',
+            title: 'Discover a surprising and amazing feat of Chuck Norris!'
         },
         {
             name: 'dogimg',
             url: 'https://dog.ceo/api/breeds/image/random',
             text: 'Puppy Love',
-            input: 'n'
+            input: 'n',
+            title: 'Click for dog pictures'
         },
         {
             name: 'fortunecookie',
             url: 'https://bad-fortune-cookie.herokuapp.com/fortunes/',
             text: 'What is your destiny?',
-            input: 'n'
+            input: 'n',
+            title: 'Get your fortune'
         },
         {
             name: 'geek',
             url: 'https://geek-jokes.sameerkumar.website/api', // has a lot of chuck norris jokes though...
             text: 'Geek out',
-            input: 'n'
+            input: 'n',
+            title: 'Click for nerd jokes'
         },
         {
             name: 'giphy',
             url: 'https://api.giphy.com/v1/gifs/random?api_key=2D9ZWdGSO6zZOnd7dqwMAxdeeDM0Bp1I',
             text: 'Give me a random GIF',
             input: 'y',
+            title: 'Enter search term or leave blank for a random one'
         },
         {
             name: 'icanhazdadjoke',
             url: 'https://icanhazdadjoke.com/',
             text: 'Click me for HAHAs',
-            input: 'n'
+            input: 'n',
+            title: 'Have some jokes'
         },
         {
             name: 'jokes',
             url: 'https://official-joke-api.appspot.com/random_joke',
             text: 'Click for Jokes',
-            input: 'n'
+            input: 'n',
+            title: 'Have some more jokes!'
         },
         {
             name: 'kanye',
             url: 'https://api.kanye.rest',
-            text: 'Kanye',
-            input: 'n'
+            text: 'Kanye Says',
+            input: 'n',
+            title: 'Get life advice directly from Kanye himself'
         },
         {
-            name: 'memegenerator',
+            name: 'memegenerator', //Thanks to Dev Daksan P S @R3l3ntl3ss on github for this amazing APi!
             url: 'https://meme-api.herokuapp.com/gimme',
             text: 'Meme Me Up, Scotty',
-            input: 'n'
+            input: 'n',
+            title: 'Memes!!!!'
         },
         {
             name: 'randomcats',
@@ -76,19 +86,22 @@ function generateAPIs() { // generate api divs & buttons
             name: 'ronswanson',
             url: 'http://ron-swanson-quotes.herokuapp.com/v2/quotes',
             text: 'Hit me with that wisdom!',
-            input: 'n'
+            input: 'n',
+            title: 'Treat yo\'self to some Ron Swanson!'
         },
         {
             name: 'translateminion',
             url: 'https://api.funtranslations.com/translate/minion.json?text=',
             text: 'BANANAS!',
-            input: 'n' // using modal
+            input: 'n', // using modal
+            title: 'Minion-ize your words'
         },
         {
             name: 'translateyoda',
             url: 'https://api.funtranslations.com/translate/yoda.json?text=',
             text: 'Yoda, You Are!',
-            input: 'n' // using modal
+            input: 'n', // using modal
+            title: 'Yoda-ize your words'
         }
     ];
 
@@ -101,10 +114,11 @@ function generateAPIs() { // generate api divs & buttons
             var input = $("<input>");
             input.attr("type", "text");
             input.attr("id", apiArr[i].name + "-input");
+            input.attr("placeholder", " e.g., Game of Thrones")
             form.append(input);
 
             var submit = $("<button>");
-            submit.addClass("api-btn");
+            submit.addClass("api-btn btn-info");
             submit.attr("data-name", apiArr[i].name);
             submit.attr("data-url", apiArr[i].url);
             submit.text(apiArr[i].text);
@@ -136,11 +150,11 @@ $(document).on("click", ".api-btn", function () {
             apiName += '-input';
             queryURL = 'https://api.giphy.com/v1/gifs/search?api_key=2D9ZWdGSO6zZOnd7dqwMAxdeeDM0Bp1I&q="' + userInput + '"&limit=100';
         }
-        mainAPIrequest();  
+        mainAPIrequest();
     } else if (apiName === 'translateminion' || apiName === 'translateyoda') {
-        inputField();
+        getUserInput();
     } else {
-        mainAPIrequest();  
+        mainAPIrequest();
     }
 });
 
@@ -156,16 +170,16 @@ $(document).on("click", ".giphy-img", function () {
     }
 });
 
-function inputField() {
-    console.log(apiName)
+function getUserInput() {
+    // console.log(apiName)
     $('#translate-modal').modal('show');
-    
-    $(document).on('click', '#modal-submit', function(){
+
+    $(document).on('click', '#modal-submit', function () {
         userInput = $('#modal-input').val().trim()
         $("#api-result").empty();
-        $.getJSON(queryURL + userInput, function(data) {
-            console.log(data)   
-            $('#api-result').html('<p>' + data.contents.translated + '</p>');       
+        $.getJSON(queryURL + userInput, function (data) {
+            // console.log(data)
+            $('#api-result').html('<p>' + data.contents.translated + '</p>');
         })
         $('#translate-modal').modal('hide')
     })
@@ -179,7 +193,7 @@ function mainAPIrequest() {
             Accept: "application/json"
         }
     }).then(function (response) {
-        console.log(response);
+        // console.log(response);
 
         $("#api-result").empty();
 
@@ -263,10 +277,10 @@ function mainAPIrequest() {
                 secondAPIrequest();
                 break;
 
-            case 'translateminion': //done in inputField function
+            case 'translateminion': //done in getUserInput function
                 break;
 
-            case 'translateyoda': //done in inputField function
+            case 'translateyoda': //done in getUserInput function
                 break;
 
             case '':
@@ -288,7 +302,7 @@ function secondAPIrequest() {
         }
     }).then(function (response) {
         // console.log(response);
-    
+
         var randomIndex = parseInt(Math.floor(Math.random() * response.data.length));
         // console.log(randomIndex);
         var results = response.data[randomIndex];
@@ -302,15 +316,6 @@ function secondAPIrequest() {
         $("#api-result").append(giphyImg);
     });
 }
-
-
-
-
-
-
-
-
-
 
 
 // Initialize Firebase
