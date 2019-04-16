@@ -4,18 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>The Rabbit Hole</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- jQuery -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Bootstrap CDN -->
+
+    <!-- Bootstrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./assets/css/tjstyle.css"> -->
 
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script> <!-- Firebase Reference -->
+
+    <script src="./assets/theonion-fartscroll.js-66fefde/fartscroll.js"></script>
 </head>
 
 <body>
@@ -30,29 +32,25 @@
             <div id="api-list" class="col-lg-4"></div>
             <div class="col-lg-8">
                 <div id="api-result" class="row">
-                    <div><button class="icon-btn"><i class="small material-icons">whatshot</i></button>
-                        <span class="instruct-title">Click Flame for Instructions</span>
-                        <ul class="instruct-body">
-                            <li><i class="small material-icons">chevron_left</i>Click on the buttons on the left to suit your fancy!</li><br>
-                            <li>"Bored? Click Here" will give you activity suggestions.</li>
-                            <li>"Chuck Norris Facts" will surprise and amaze you.</li>
-                            <li>"Puppy Love" will bring you doggy delights.</li>
-                            <li>Click on "What is Your Destiny" for some fortunes.</li>
-                            <li>"Geek Out" for random geeky statements.</li>
-                            <li>Enter your idea for Gifs in the blank text field, or choose randomly.</li>
-                            <li>"Click Me for HAHAs" and "Click for Jokes" are pretty obvious...</li>
-                            <li>"Kanye Says" will bring you life advice from Kanye.</li>
-                            <li>Click on "Meme Me Up, Scotty" for entertaining memes.</li>
-                            <li>"Kitties To Brighten Your Day"...enough said. </li>
-                            <li>"Hit Me With That Wisdom" generates quotes from Ron Swanson.</li>
-                            <li>"BANANAS!" translates your words into adorable Minion-Speak.</li>
-                            <li>"Yoda, You Are!" translates your words as the ultimate jedi-master.</li>
-                        </ul>
-                    </div>
+                    <ul class="instruct-body">
+                        <li>"Bored? Click Here" will give you activity suggestions.</li>
+                        <li>"Chuck Norris Facts" will surprise and amaze you.</li>
+                        <li>"Puppy Love" will bring you doggy delights.</li>
+                        <li>Click on "What is Your Destiny" for some fortunes.</li>
+                        <li>"Geek Out" for random geeky statements.</li>
+                        <li>Enter your idea for Gifs in the blank text field, or choose randomly.</li>
+                        <li>"Click Me for HAHAs" and "Click for Jokes" are pretty obvious...</li>
+                        <li>"Kanye Says" will bring you life advice from Kanye.</li>
+                        <li>Click on "Meme Me Up, Scotty" for entertaining memes.</li>
+                        <li>"Kitties To Brighten Your Day"...enough said. </li>
+                        <li>"Hit Me With That Wisdom" generates quotes from Ron Swanson.</li>
+                        <li>"BANANAS!" translates your words into adorable Minion-Speak.</li>
+                        <li>"Yoda, You Are!" translates your words as the ultimate jedi-master.</li>
+                    </ul>
                 </div>
-                <div class="row">
-                    <p><span id="watchers"></span> people are online!!!</p>
-                </div>
+				<div class="row">
+					<p><span id="watchers"></span> people are online!!!</p>
+				</div>
             </div>
         </div>
     </div>
@@ -70,7 +68,8 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="modal-input" class="col-form-label">Input the message you would like translated:</label>
+                            <label for="modal-input" class="col-form-label">Input the message you would like
+                                translated:</label>
                             <textarea class="form-control" id="modal-input"></textarea>
                         </div>
                     </form>
@@ -86,62 +85,7 @@
         <div></div>
     </footer>
     <script src="./assets/javascript/app.js"></script>
+
 </body>
+
 </html>
-
-<!-- 
-Coding Requirements
-    Must use at least two APIs
-        Allows CORS - so can view on browser
-        Simple or no authentication
-        JSON response returned
-        Well documented
-    Must use AJAX to pull data
-    Must utilize at least one new library or technology that we haven’t discussed
-    Must have a polished frontend / UI 
-    Must meet good quality coding standards (indentation, scoping, naming)
-    Must NOT use alerts, confirms, or prompts (look into modals!)
-    Must have some sort of repeating element (table, columns, etc)
-    Must use Bootstrap or Alternative CSS Framework (e.g., Materialize)
-    Must be Deployed (Github Pages)
-    Must have User Input Validation 
-
-Coding Nice to Haves
-    Utilize Firebase for Persistent Data Storage (Consider this basically a requirement).
-    Mobile Responsive
-
-Presentation Requirement
-    You will also be responsible for preparing a 10 minute presentation.
-    This will be a formal presentation. 
-    One in which you explain in detail:
-        Your overall application’s concept
-        The motivation for its development
-        Your design process
-        The technologies you used (and briefly how they work)
-        A demonstration of its functionality
-        Directions for future development
-    Treat the presentation seriously! 
-    Talking intelligently about tech > doing tech sometimes. 
-
-Metrics
-    Concept
-    Design
-    Functionality
-    Collaboration
-    Presentation
-
-4/6/19 Tasks
-    Brainstorm possible ideas 
-    Begin API Research
-    Create an initial draft / sketch of the final design
-    Create a short 1 page proposal listing out each of the following:
-        Project Title - Welcome to the Rabbit Hole!
-        Team Members - Jihong, Ava, TJ
-        Project Description - An amalgamation of mood-boosting time-suckers
-        Sketch of Final Product
-        APIs to be Used
-        Rough Breakdown of Tasks
-        Libraries/Technologies
-            Babel - used to compile ES6 to work on older browsers
-            ESLint - catch syntax errors and style issues (not for UI)
--->
