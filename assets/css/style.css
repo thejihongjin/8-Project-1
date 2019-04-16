@@ -1,9 +1,6 @@
 body { 
-    background: rgb(0, 52, 71) no-repeat fixed center; 
-    
+    background: linear-gradient(to bottom, #0033cc 0%, #33cccc 100%);
 }
-
-
 
 .jumbotron {
     background-image: url("../../assets/images/rabbit-edit.png");
@@ -23,30 +20,22 @@ body {
 }
 
 .btn-dark {
-    /* width: 90%; */
     border: 2px solid rgb(0, 0, 0);
     margin: 2px 0;
     width: 100%;
     color: white;
 }
 
-.icon-btn {
-    border-radius: 5px;
-}
-.icon-btn:focus {
-    background-color: #F5F5F5;
-}
-.icon-btn:hover {
-    background-color: #C8C8C8;
-}
 .api-btn {
     text-transform: capitalize;
     font-size: 1.2em;
     padding: 5px;
 }
+
 .btn:focus {
     background-color: #343a40;
 }
+
 .btn-info {
     margin: 5px;
     border-radius: 10px;
