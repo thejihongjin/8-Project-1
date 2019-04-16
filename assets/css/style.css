@@ -3,9 +3,7 @@ body {
     
   }
 
-.container {
-    color: rgb(170, 170, 170);
-}
+
 
 .jumbotron {
     background-image: url("../../assets/images/rabbit-edit.png");
@@ -16,7 +14,7 @@ body {
 }
 
 .instruct-body {
-    color: rgb(170, 170, 170);
+    color: white;
     margin: 20px auto;
     padding: 10px;
     line-height: 2em;
@@ -29,7 +27,7 @@ body {
     border: 2px solid rgb(0, 0, 0);
     margin: 2px 0;
     width: 100%;
-    color: rgb(206, 206, 206);
+    color: white;
 }
 
 .icon-btn {
@@ -105,7 +103,7 @@ img {
 
 .meme-img {
     max-width: auto;
-    max-height: 600px;
+    max-height: 300px;
     margin: 0 auto;
     border-radius: 0%;
 }
