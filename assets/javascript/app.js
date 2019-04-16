@@ -8,85 +8,100 @@ function generateAPIs() { // generate api divs & buttons
             name: 'bored',
             url: 'http://www.boredapi.com/api/activity/',
             text: 'Bored? Click Here',
-            input: 'n'
+            input: 'n',
+            title: "Gives you a random activity suggestion"
         },
         {
             name: 'chucknorris',
             url: 'http://api.icndb.com/jokes/random',
             text: 'Chuck Norris Facts',
-            input: 'n'
+            input: 'n',
+            title: 'Surprising and amazing feats of Chuck Norris!'
         },
         {
             name: 'dogimg',
             url: 'https://dog.ceo/api/breeds/image/random',
             text: 'Puppy Love',
-            input: 'n'
+            input: 'n',
+            title: 'Click here for doggy delights.'
         },
         {
             name: 'fortunecookie',
             url: 'https://bad-fortune-cookie.herokuapp.com/fortunes/',
             text: 'What is your destiny?',
-            input: 'n'
+            input: 'n',
+            title: 'Learn of what your fortune holds.'
         },
         {
             name: 'geek',
-            url: 'https://geek-jokes.sameerkumar.website/api',
+            url: 'https://geek-jokes.sameerkumar.website/api', // has a lot of chuck norris jokes though...
             text: 'Geek out',
-            input: 'n'
+            input: 'n',
+            title: 'Click for some random geeky statements.'
         },
         {
             name: 'giphy',
             url: 'https://api.giphy.com/v1/gifs/random?api_key=2D9ZWdGSO6zZOnd7dqwMAxdeeDM0Bp1I',
-            text: 'Give me a random GIF',
+            text: 'Give me a GIF',
             input: 'y',
+            title: 'Enter your idea for gifs in the blank text field, or click for a random one.'
         },
         {
             name: 'icanhazdadjoke',
             url: 'https://icanhazdadjoke.com/',
             text: 'Click me for HAHAs',
-            input: 'n'
+            input: 'n',
+            title: 'Here\'s some jokes.'
         },
         {
             name: 'jokes',
             url: 'https://official-joke-api.appspot.com/random_joke',
             text: 'Click for Jokes',
-            input: 'n'
+            input: 'n',
+            title: 'Here\'s even more jokes!'
         },
         {
             name: 'kanye',
             url: 'https://api.kanye.rest',
-            text: 'Kanye',
-            input: 'n'
+            text: 'Kanye Says',
+            input: 'n',
+            title: 'Life advice from Kanye himself.'
         },
         {
             name: 'memegenerator',
+            //Thanks to Dev Daksan P S @R3l3ntl3ss on github for this amazing APi!
             url: 'https://meme-api.herokuapp.com/gimme',
             text: 'Meme Me Up, Scotty',
-            input: 'n'
+            input: 'n',
+            title: 'Click for random entertaining memes.'
         },
         {
             name: 'randomcats',
             url: 'https://api.thecatapi.com/v1/images/search',
             text: 'Kitties To Brighten Your Day',
-            input: 'n'
+            input: 'n',
+            title: 'The button says it all...'
         },
         {
             name: 'ronswanson',
             url: 'http://ron-swanson-quotes.herokuapp.com/v2/quotes',
             text: 'Hit me with that wisdom!',
-            input: 'n'
+            input: 'n',
+            title: 'Quotes from Ron Swanson.'
         },
         {
             name: 'translateminion',
             url: 'https://api.funtranslations.com/translate/minion.json?text=',
             text: 'BANANAS!',
-            input: 'n' // using modal
+            input: 'n', // using modal
+            title: 'Translate your words into adorable Minion-Speak.'
         },
         {
             name: 'translateyoda',
             url: 'https://api.funtranslations.com/translate/yoda.json?text=',
             text: 'Yoda, You Are!',
-            input: 'n' // using modal
+            input: 'n', // using modal
+            title: 'Translates your words as the ultimate jedi-master.'
         }
     ];
 
@@ -100,13 +115,14 @@ function generateAPIs() { // generate api divs & buttons
             var input = $("<input>");
             input.attr("type", "text");
             input.attr("id", apiArr[i].name + "-input");
-            input.attr("placeholder", "cats are awesome")
+            input.attr("placeholder", " cats are awesome")
             form.append(input);
 
             var submit = $("<button>");
             submit.addClass("api-btn btn-info");
             submit.attr("data-name", apiArr[i].name);
             submit.attr("data-url", apiArr[i].url);
+            submit.attr("title", apiArr[i].title);
             submit.text(apiArr[i].text);
             form.append(submit);
 
@@ -117,6 +133,7 @@ function generateAPIs() { // generate api divs & buttons
             btn.addClass("btn btn-dark api-btn z-depth-0");
             btn.attr("data-name", apiArr[i].name);
             btn.attr("data-url", apiArr[i].url);
+            btn.attr("title", apiArr[i].title);
             btn.text(apiArr[i].text);
             apiDiv.append(btn);
             $("#api-list").append(apiDiv);
@@ -143,7 +160,8 @@ $(document).on("click", ".api-btn", function () {
             apiName += '-input';
             queryURL = 'https://api.giphy.com/v1/gifs/search?api_key=2D9ZWdGSO6zZOnd7dqwMAxdeeDM0Bp1I&q="' + userInput + '"&limit=100';
         }
-        mainAPIrequest();  
+        mainAPIrequest();
+        $('#giphy-input').val('')
     } else if (apiName === 'translateminion' || apiName === 'translateyoda') {
         inputField();
     } else {
@@ -202,7 +220,7 @@ function mainAPIrequest() {
                 break;
 
             case 'dogimg':
-                $("#api-result").append('<img src=' + response.message + '>')
+                $("#api-result").append('<img src=' + response.message + ' alt=Doggy Img>')
                 break;
 
             case 'fortunecookie':
@@ -222,7 +240,8 @@ function mainAPIrequest() {
             case 'giphy':
                 var results = response.data;
                 var giphyImg = $("<img>");
-                giphyImg.attr("src", results.images.fixed_height.url);
+                giphyImg.attr("src", sresults.images.fixed_height.url);
+                giphyImg.attr("alt", results.title);
                 giphyImg.addClass("giphy-img");
                 giphyImg.attr("data-state", "animate");
                 giphyImg.attr("data-still", results.images.fixed_height_still.url);
@@ -234,7 +253,8 @@ function mainAPIrequest() {
                 var giphyIndex = parseInt(Math.floor(Math.random() * response.data.length));
                 var results = response.data[giphyIndex];
                 var giphyImg = $("<img>");
-                giphyImg.attr("src", results.images.fixed_height.url);
+                giphyImg.attr("src", sresults.images.fixed_height.url);
+                giphyImg.attr("alt", results.title);
                 giphyImg.addClass("giphy-img");
                 giphyImg.attr("data-state", "animate");
                 giphyImg.attr("data-still", results.images.fixed_height_still.url);
@@ -257,11 +277,11 @@ function mainAPIrequest() {
                 break;
 
             case 'memegenerator':
-                $("#api-result").append('<img src=' + response.url + ' class="meme-img">');
+                $("#api-result").append('<img src=' + response.url + ' alt="Meme Img" class="meme-img">');
                 break;
 
             case 'randomcats':
-                $("#api-result").append('<img src=' + response[0].url + '>')
+                $("#api-result").append('<img src=' + response[0].url + ' alt="Cat Img">')
                 break;
 
             case 'ronswanson':

@@ -1,6 +1,11 @@
 body { 
-    background: rgb(4, 62, 85) no-repeat fixed center; 
+    background: rgb(44, 69, 78) no-repeat fixed center; 
+    
   }
+
+.container {
+    color: rgb(170, 170, 170);
+}
 
 .jumbotron {
     background-image: url("../../assets/images/rabbit-edit.png");
@@ -10,16 +15,8 @@ body {
     border: 2px solid black;
 }
 
-.instruct-title {
-    color: white;
-    margin: 20px auto;
-    padding: 10px;
-    font-weight: 400;
-    font-size: 1.3em;
-}
 .instruct-body {
-    display: none;
-    color: white;
+    color: rgb(170, 170, 170);
     margin: 20px auto;
     padding: 10px;
     line-height: 2em;
@@ -32,6 +29,7 @@ body {
     border: 2px solid rgb(0, 0, 0);
     margin: 2px 0;
     width: 100%;
+    color: rgb(206, 206, 206);
 }
 
 .icon-btn {
@@ -106,10 +104,14 @@ img {
 }
 
 .meme-img {
-    max-width: 890px;
-    max-height: auto;
+    max-width: auto;
+    max-height: 600px;
     margin: 0 auto;
     border-radius: 0%;
+}
+
+img:hover {
+    transform: scale(1.7);
 }
 
 p {
