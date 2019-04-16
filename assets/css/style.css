@@ -1,29 +1,88 @@
 body { 
-    background: rgb(4, 62, 85) no-repeat fixed center; 
-  }
-
-/* div {
-    border: 2px solid black;
-} */
+    background: linear-gradient(to bottom, #0033cc 0%, #33cccc 100%);
+}
 
 .jumbotron {
     background-image: url("../../assets/images/rabbit-edit.png");
     background-position: center, center;
     background-repeat: no-repeat;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+.instruct-body {
+    color: white;
+    margin: 20px auto;
+    padding: 10px;
+    line-height: 2em;
+    font-weight: 300;
+    font-size: 1.2em;
 }
 
 .btn-dark {
-    width: 90%;
     border: 2px solid rgb(0, 0, 0);
     margin: 2px 0;
+    width: 100%;
+    color: white;
+}
+
+.api-btn {
+    text-transform: capitalize;
+    font-size: 1.2em;
+    padding: 5px;
+}
+
+.btn:focus {
+    background-color: #343a40;
+}
+
+.btn-info {
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #595959;
+    border-color: #595959;
+}
+
+.btn-info:hover {
+    background-color: #424242;
+    border-color: #424242;
+}
+
+.btn-info:focus {
+    background-color: #424242;
+    border-color: #424242;
+}
+
+.api-div {
+    margin: 0 auto;
 }
 
 #api-result {
-    margin: 20px;
+    margin: 20px 0 0 20px;
     padding: 30px;
     border: 2px solid black;
     border-radius: 20px;
     background-color: rgb(63, 63, 63);
+    font-size: 1em;
+}
+
+#api-list {
+    margin-top: 16px;
+}
+
+#giphy-form {
+    background-color: #343a40;
+    border-radius: 10px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#giphy-input {
+    width: 80%;
+    margin: 10px;
+    background: white;
 }
 
 img {
@@ -34,11 +93,15 @@ img {
 }
 
 .meme-img {
-    max-width: 890px;
-    max-height: auto;
+    max-width: auto;
+    max-height: 300px;
     margin: 0 auto;
     border-radius: 0%;
- }
+}
+
+img:hover {
+    transform: scale(1.7);
+}
 
 p {
     color: white;
