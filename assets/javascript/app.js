@@ -1,6 +1,10 @@
+
+$(document).ready(fartscroll());
+
 var queryURL = '';
 var userInput = '';
 generateAPIs();
+
 
 function generateAPIs() { // generate api divs & buttons
     var apiArr = [
@@ -240,7 +244,7 @@ function mainAPIrequest() {
             case 'giphy':
                 var results = response.data;
                 var giphyImg = $("<img>");
-                giphyImg.attr("src", sresults.images.fixed_height.url);
+                giphyImg.attr("src", results.images.fixed_height.url);
                 giphyImg.attr("alt", results.title);
                 giphyImg.addClass("giphy-img");
                 giphyImg.attr("data-state", "animate");
@@ -253,7 +257,7 @@ function mainAPIrequest() {
                 var giphyIndex = parseInt(Math.floor(Math.random() * response.data.length));
                 var results = response.data[giphyIndex];
                 var giphyImg = $("<img>");
-                giphyImg.attr("src", sresults.images.fixed_height.url);
+                giphyImg.attr("src", results.images.fixed_height.url);
                 giphyImg.attr("alt", results.title);
                 giphyImg.addClass("giphy-img");
                 giphyImg.attr("data-state", "animate");
@@ -294,10 +298,6 @@ function mainAPIrequest() {
                 break;
 
             case 'translateyoda': //done in inputField function
-                break;
-
-            case '':
-                // $("#api-result").text();
                 break;
 
             default:
