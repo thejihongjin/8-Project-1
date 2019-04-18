@@ -1,4 +1,4 @@
-$(document).ready(fartscroll());
+$(document).ready(fartscroll(300));
 
 var queryURL = '';
 var userInput = '';
